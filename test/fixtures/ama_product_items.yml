@@ -1,0 +1,47 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  asin: 
+  upc: 
+  browse_node_id: 
+  title: MyString
+  studio: MyString
+  parent_asin: MyString
+  brand: MyString
+  package_qty: 
+  product_group: MyString
+  publisher: MyString
+  brand_max_age: 
+  brand_min_age: 
+  model: MyString
+  mpn: MyString
+  num_of_items: 
+  detail_page_url: MyString
+  sm_image_url: MyString
+  mid_image_url: MyString
+  lrg_image_url: MyString
+  publication_date: 2018-02-12 13:54:41
+  release_date: 2018-02-12 13:54:41
+
+two:
+  asin: 
+  upc: 
+  browse_node_id: 
+  title: MyString
+  studio: MyString
+  parent_asin: MyString
+  brand: MyString
+  package_qty: 
+  product_group: MyString
+  publisher: MyString
+  brand_max_age: 
+  brand_min_age: 
+  model: MyString
+  mpn: MyString
+  num_of_items: 
+  detail_page_url: MyString
+  sm_image_url: MyString
+  mid_image_url: MyString
+  lrg_image_url: MyString
+  publication_date: 2018-02-12 13:54:41
+  release_date: 2018-02-12 13:54:41
