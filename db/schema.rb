@@ -21,12 +21,15 @@ ActiveRecord::Schema.define(version: 20180212220247) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "ama_product_items", primary_key: "asin", force: :cascade do |t|
+  create_table "ama_product_items", primary_key: "asin", id: :string, force: :cascade do |t|
     t.bigint "upc"
     t.bigint "browse_node_id"
     t.string "title"
     t.string "studio"
     t.string "parent_asin"
+    t.string "list_price_formated"
+    t.string "ean"
+    t.boolean "is_adult_product"
     t.string "brand"
     t.integer "package_qty"
     t.string "product_group"
@@ -47,7 +50,7 @@ ActiveRecord::Schema.define(version: 20180212220247) do
   end
 
   create_table "ama_top_sellers", force: :cascade do |t|
-    t.bigint "asin"
+    t.string "asin"
     t.string "title"
     t.string "detail_page_url"
     t.string "product_group"

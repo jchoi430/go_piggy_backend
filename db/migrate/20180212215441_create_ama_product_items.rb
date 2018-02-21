@@ -1,12 +1,15 @@
 class CreateAmaProductItems < ActiveRecord::Migration[5.1]
   def change
     create_table :ama_product_items, id:false, force: :cascade do |t|
-      t.primary_key :asin
+      t.string :asin, null: false
       t.bigint :upc
       t.bigint :browse_node_id
       t.string :title
       t.string :studio
       t.string :parent_asin
+      t.string :list_price_formated
+      t.string :ean
+      t.boolean :is_adult_product
       t.string :brand
       t.integer :package_qty
       t.string :product_group
@@ -25,5 +28,6 @@ class CreateAmaProductItems < ActiveRecord::Migration[5.1]
 
       t.timestamps
     end
+    execute "ALTER TABLE ama_product_items ADD PRIMARY KEY (asin);"
   end
 end

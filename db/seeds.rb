@@ -8,21 +8,21 @@
 
 
 
-b = AmaBrowseNode.new
-b.browse_node_id = 165796011
-b.browse_node_name = 'Baby Products'
-b.save!
+# b = AmaBrowseNode.new
+# b.browse_node_id = 165796011
+# b.browse_node_name = 'Baby Products'
+# b.save!
 
-p = AmaProductItem.new
-p.asin = 'B00FMWWN6U'
-p.upc = 37000847717
-p.browse_node_id = 165796011
-p.save!
+# p = AmaProductItem.new
+# p.asin = 'B00FMWWN6U'
+# p.upc = 37000847717
+# p.browse_node_id = 165796011
+# p.save!
 
-t = AmaTopSeller.new
-t.asin = 'B00FMWWN6U'
-t.title = 'Playtex Diaper Genie Refills for Diaper Genie Diaper Pails - 270 Count (Pack of 3)'
-t.detail_page_url = 'https://www.amazon.com/Swaddle-Blanket-Adjustable-Lattice-Small/dp/B077634F59?psc=1&SubscriptionId=AKIAJRZYJLIOF2RUF3PA&tag=gopiggybank-20&linkCode=xm2&camp=2025&creative=165953&creativeASIN=B077634F59'
-t.is_active = true
-t.product_group = 'Baby Product'
-t.save!
+# t = AmaTopSeller.new
+# t.asin = 'B00FMWWN6U'
+# t.title = 'Playtex Diaper Genie Refills for Diaper Genie Diaper Pails - 270 Count (Pack of 3)'
+# t.detail_page_url = 'https://www.amazon.com/Swaddle-Blanket-Adjustable-Lattice-Small/dp/B077634F59?psc=1&SubscriptionId=AKIAJRZYJLIOF2RUF3PA&tag=gopiggybank-20&linkCode=xm2&camp=2025&creative=165953&creativeASIN=B077634F59'
+# t.is_active = true
+# t.product_group = 'Baby Product'
+# t.save!
