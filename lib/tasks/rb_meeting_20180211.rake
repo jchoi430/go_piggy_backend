@@ -65,6 +65,7 @@ namespace :amazon do
         p.lrg_image_url = doc.at('Items').css('Item').children.at("LargeImage").at("URL").content unless doc.at('Items').css('Item').children.at("LargeImage").at("URL").nil?
         p.publication_date = doc.at('Items').css('Item').children.at("ItemAttributes").at("PublicationDate").content unless doc.at('Items').css('Item').children.at("ItemAttributes").at("PublicationDate").nil?
         p.release_date = doc.at('Items').css('Item').children.at("ItemAttributes").at("ReleaseDate").content unless doc.at('Items').css('Item').children.at("ItemAttributes").at("ReleaseDate").nil?
+        p.sales_rank = doc.at('Items').css('Item').children.at("SalesRank").content unless doc.at('Items').css('Item').children.at("SalesRank").nil?
         p.save!
 
         t = AmaTopSeller.find_or_create_by asin: asin
@@ -105,6 +106,7 @@ namespace :amazon do
         p.lrg_image_url = doc.at('Items').css('Item').children.at("LargeImage").at("URL").content unless doc.at('Items').css('Item').children.at("LargeImage").at("URL").nil?
         p.publication_date = doc.at('Items').css('Item').children.at("ItemAttributes").at("PublicationDate").content unless doc.at('Items').css('Item').children.at("ItemAttributes").at("PublicationDate").nil?
         p.release_date = doc.at('Items').css('Item').children.at("ItemAttributes").at("ReleaseDate").content unless doc.at('Items').css('Item').children.at("ItemAttributes").at("ReleaseDate").nil?
+        p.sales_rank = doc.at('Items').css('Item').children.at("SalesRank").content unless doc.at('Items').css('Item').children.at("SalesRank").nil?
         p.save!
 
         t = AmaTopSeller.new
