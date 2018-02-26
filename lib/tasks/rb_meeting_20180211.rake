@@ -39,7 +39,7 @@ namespace :amazon do
       r = AmaProductItem.find_by asin: asin
         #binding.pry if index == 2
         p "Processing: #{asin} with index #{index}"
-        #require 'pry'; binding.pry
+        #require 'pry'; binding.pry 
       if r
         p = AmaProductItem.find_by asin: asin
         p.upc = doc.at('Items').css('Item').children.at("ItemAttributes").at("UPC").content unless doc.at('Items').css('Item').children.at("ItemAttributes").at("UPC").nil?
@@ -65,6 +65,7 @@ namespace :amazon do
         p.lrg_image_url = doc.at('Items').css('Item').children.at("LargeImage").at("URL").content unless doc.at('Items').css('Item').children.at("LargeImage").at("URL").nil?
         p.publication_date = doc.at('Items').css('Item').children.at("ItemAttributes").at("PublicationDate").content unless doc.at('Items').css('Item').children.at("ItemAttributes").at("PublicationDate").nil?
         p.release_date = doc.at('Items').css('Item').children.at("ItemAttributes").at("ReleaseDate").content unless doc.at('Items').css('Item').children.at("ItemAttributes").at("ReleaseDate").nil?
+        p.product_language = doc.at('Items').css('Item').children.at("ItemAttributes").at('Languages').children.at('Language').children.at('Name').content unless doc.at('Items').css('Item').children.at("ItemAttributes").at('Languages').nil?
         p.sales_rank = doc.at('Items').css('Item').children.at("SalesRank").content unless doc.at('Items').css('Item').children.at("SalesRank").nil?
         p.save!
 
@@ -106,6 +107,7 @@ namespace :amazon do
         p.lrg_image_url = doc.at('Items').css('Item').children.at("LargeImage").at("URL").content unless doc.at('Items').css('Item').children.at("LargeImage").at("URL").nil?
         p.publication_date = doc.at('Items').css('Item').children.at("ItemAttributes").at("PublicationDate").content unless doc.at('Items').css('Item').children.at("ItemAttributes").at("PublicationDate").nil?
         p.release_date = doc.at('Items').css('Item').children.at("ItemAttributes").at("ReleaseDate").content unless doc.at('Items').css('Item').children.at("ItemAttributes").at("ReleaseDate").nil?
+        p.product_language = doc.at('Items').css('Item').children.at("ItemAttributes").at('Languages').children.at('Language').children.at('Name').content unless doc.at('Items').css('Item').children.at("ItemAttributes").at('Languages').nil?
         p.sales_rank = doc.at('Items').css('Item').children.at("SalesRank").content unless doc.at('Items').css('Item').children.at("SalesRank").nil?
         p.save!
 
