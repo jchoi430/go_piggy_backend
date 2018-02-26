@@ -48,7 +48,6 @@ namespace :amazon do
         p.studio = doc.at('Items').css('Item').children.at("ItemAttributes").at("Studio").content unless doc.at('Items').css('Item').children.at("ItemAttributes").at("Studio").nil?
         p.parent_asin = doc.at('Items').css('Item').children.at("ParentASIN").content unless doc.at('Items').css('Item').children.at("ParentASIN").nil?
         ## this one should be nomalized
-        p.list_price_formated = doc.at('Items').css('Item').children.at("ItemAttributes").at("ListPrice").children.at("FormattedPrice").content unless doc.at('Items').css('Item').children.at("ItemAttributes").at("ListPrice").nil?
         p.ean = doc.at('Items').css('Item').children.at("ItemAttributes").at("EAN").content unless doc.at('Items').css('Item').children.at("ItemAttributes").at("EAN").nil?
         p.is_adult_product = doc.at('Items').css('Item').children.at("ItemAttributes").at("IsAdultProduct").content unless doc.at('Items').css('Item').children.at("ItemAttributes").at("IsAdultProduct").nil?
         p.brand = doc.at('Items').css('Item').children.at("ItemAttributes").at("Brand").content unless doc.at('Items').css('Item').children.at("ItemAttributes").at("Brand").nil?
@@ -68,6 +67,18 @@ namespace :amazon do
         p.release_date = doc.at('Items').css('Item').children.at("ItemAttributes").at("ReleaseDate").content unless doc.at('Items').css('Item').children.at("ItemAttributes").at("ReleaseDate").nil?
         p.save!
 
+        t = AmaTopSeller.find_or_create_by asin: asin
+        t.title = doc.at('Items').css('Item').children.at("ItemAttributes").at("Title").content unless doc.at('Items').css('Item').children.at("ItemAttributes").at("Title").nil?
+        t.detail_page_url = doc.at('Items').css('Item').children.at("DetailPageURL").content unless doc.at('Items').css('Item').children.at("DetailPageURL").nil?
+        t.product_group = doc.at('Items').css('Item').children.at("ItemAttributes").at("ProductGroup").content unless doc.at('Items').css('Item').children.at("ItemAttributes").at("ProductGroup").nil?
+        t.is_active = true
+        t.save!
+        
+        l = AmaProductListPrice.find_or_create_by asin: asin
+        l.amount = doc.at('Items').css('Item').children.at("ItemAttributes").children.at("ListPrice").at('Amount').content unless doc.at('Items').css('Item').children.at("ItemAttributes").children.at("ListPrice").at('Amount').nil?
+        l.currency_code = doc.at('Items').css('Item').children.at("ItemAttributes").children.at("ListPrice").at('CurrencyCode').content unless doc.at('Items').css('Item').children.at("ItemAttributes").children.at("ListPrice").at('CurrencyCode').nil?
+        l.formated_price = doc.at('Items').css('Item').children.at("ItemAttributes").at("ListPrice").children.at("FormattedPrice").content unless doc.at('Items').css('Item').children.at("ItemAttributes").children.at("ListPrice").at('FormattedPrice').nil?
+        l.save!
         #get_offers(doc.at('Items').css('Item').children.at("Offers"))
       else
         p = AmaProductItem.new
@@ -77,7 +88,6 @@ namespace :amazon do
         p.title = doc.at('Items').css('Item').children.at("ItemAttributes").at("Title").content unless doc.at('Items').css('Item').children.at("ItemAttributes").at("Title").nil?
         p.studio = doc.at('Items').css('Item').children.at("ItemAttributes").at("Studio").content unless doc.at('Items').css('Item').children.at("ItemAttributes").at("Studio").nil?
         p.parent_asin = doc.at('Items').css('Item').children.at("ParentASIN").content unless doc.at('Items').css('Item').children.at("ParentASIN").nil?
-        p.list_price_formated = doc.at('Items').css('Item').children.at("ItemAttributes").at("ListPrice").children.at("FormattedPrice").content unless doc.at('Items').css('Item').children.at("ItemAttributes").at("ListPrice").nil?
         p.ean = doc.at('Items').css('Item').children.at("ItemAttributes").at("EAN").content unless doc.at('Items').css('Item').children.at("ItemAttributes").at("EAN").nil?
         p.is_adult_product = doc.at('Items').css('Item').children.at("ItemAttributes").at("IsAdultProduct").content unless doc.at('Items').css('Item').children.at("ItemAttributes").at("IsAdultProduct").nil?
         p.brand = doc.at('Items').css('Item').children.at("ItemAttributes").at("Brand").content unless doc.at('Items').css('Item').children.at("ItemAttributes").at("Brand").nil?
@@ -99,11 +109,17 @@ namespace :amazon do
 
         t = AmaTopSeller.new
         t.asin = asin
-        t.title = doc.at('Items').css('Item').children.at("ItemAttributes").at("Title").content unless doc.at('Items').css('Item').children.at("ItemAttributes").at("Title")
-        t.detail_page_url = doc.at('Items').css('Item').children.at("DetailPageURL").content unless doc.at('Items').css('Item').children.at("DetailPageURL")
-        t.product_group = doc.at('Items').css('Item').children.at("ItemAttributes").at("ProductGroup").content unless doc.at('Items').css('Item').children.at("ItemAttributes").at("ProductGroup")
+        t.title = doc.at('Items').css('Item').children.at("ItemAttributes").at("Title").content unless doc.at('Items').css('Item').children.at("ItemAttributes").at("Title").nil?
+        t.detail_page_url = doc.at('Items').css('Item').children.at("DetailPageURL").content unless doc.at('Items').css('Item').children.at("DetailPageURL").nil?
+        t.product_group = doc.at('Items').css('Item').children.at("ItemAttributes").at("ProductGroup").content unless doc.at('Items').css('Item').children.at("ItemAttributes").at("ProductGroup").nil?
         t.is_active = true
         t.save!
+
+        l = AmaProductListPrice.find_or_create_by asin: asin
+        l.amount = doc.at('Items').css('Item').children.at("ItemAttributes").children.at("ListPrice").at('Amount').content unless doc.at('Items').css('Item').children.at("ItemAttributes").children.at("ListPrice").at('Amount').nil?
+        l.currency_code = doc.at('Items').css('Item').children.at("ItemAttributes").children.at("ListPrice").at('CurrencyCode').content unless doc.at('Items').css('Item').children.at("ItemAttributes").children.at("ListPrice").at('CurrencyCode').nil?
+        l.formated_price = doc.at('Items').css('Item').children.at("ItemAttributes").at("ListPrice").children.at("FormattedPrice").content unless doc.at('Items').css('Item').children.at("ItemAttributes").children.at("ListPrice").at('FormattedPrice').nil?
+        l.save!
       end
     end
 
